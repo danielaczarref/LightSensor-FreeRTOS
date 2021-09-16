@@ -3,7 +3,7 @@
 void TaskLight( void *pvParameters );
 void TaskAnalogRead( void *pvParameters );
 
-const int pinoLDR = A0;
+const int pinoLDR = A5;
 const int pinoLED = 7; 
 int leitura = 0;
 
@@ -24,6 +24,9 @@ void TaskLight( void *pvParameters )
 
   pinMode(pinoLDR, INPUT); 
   pinMode(pinoLED, OUTPUT);
+  for (;;) {
+    leitura = analogRead(pinoLDR);
+  }
 }
 
 void TaskAnalogRead(void *pvParameters)
@@ -32,18 +35,19 @@ void TaskAnalogRead(void *pvParameters)
 
   for (;;)
   {
-      leitura = analogRead(pinoLDR);
-
-    if(leitura < 40){ 
+    //leitura = analogRead(pinoLDR);
+    Serial.println();
+    Serial.print(leitura);
+    Serial.println();
+    if(leitura < 20){ 
       digitalWrite(pinoLED,HIGH);
     }
     else {
       digitalWrite(pinoLED,LOW);
     }
-    vTaskDelay(100);
+    vTaskDelay(10);
   }
 }
 
 void loop() {
-
 }
