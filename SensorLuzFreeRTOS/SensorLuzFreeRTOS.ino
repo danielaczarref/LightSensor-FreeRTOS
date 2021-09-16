@@ -1,6 +1,6 @@
 #include <Arduino_FreeRTOS.h>
 
-void TaskBlink( void *pvParameters );
+void TaskLight( void *pvParameters );
 void TaskAnalogRead( void *pvParameters );
 
 const int pinoLDR = A0;
@@ -14,11 +14,11 @@ void setup() {
     ; 
   }
     
-  xTaskCreate( TaskBlink, "Blink", 128, NULL, 1, NULL );
-  xTaskCreate( TaskAnalogRead, "AnalogRead", 128, NULL, 2ahhh, NULL );
+  xTaskCreate( TaskLight, "LED", 128, NULL, 1, NULL );
+  xTaskCreate( TaskAnalogRead, "AnalogRead", 128, NULL, 2, NULL );
 }
 
-void TaskBlink( void *pvParameters )
+void TaskLight( void *pvParameters )
 {
   (void) pvParameters;
 
